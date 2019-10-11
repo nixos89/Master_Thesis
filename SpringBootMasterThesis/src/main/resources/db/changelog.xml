@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+        	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<preConditions>
+		<runningAs username="root" />
+	</preConditions>
+
+	<changeSet id="init" author="NikolaStevanovic">
+		<sqlFile path="changelogs/init.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="populateDummyData" author="NikolaStevanovic">
+		<sqlFile path="changelogs/populateDummyData.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="addMoreCategories" author="NikolaStevanovic">
+		<sqlFile path="changelogs/addMoreCategories.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="addMoreBooksAndAuthors"
+		author="NikolaStevanovic">
+		<sqlFile path="changelogs/addMoreBooksAndAuthors.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="insertingOrderItems"
+		author="NikolaStevanovic">
+		<sqlFile path="changelogs/insertingOrderItems.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+</databaseChangeLog>
