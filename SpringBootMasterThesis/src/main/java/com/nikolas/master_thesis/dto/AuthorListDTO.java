@@ -10,12 +10,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class BookListDTO {
+public class AuthorListDTO {
 
-	private List<BookDTO> bookListDTO;
+	private List<AuthorDTO> authorsDTO;
 
-	public BookListDTO() {
-		this.bookListDTO = new ArrayList<BookDTO>();
+	public AuthorListDTO() {
+		this.authorsDTO = new ArrayList<AuthorDTO>();
 	}
 
 }

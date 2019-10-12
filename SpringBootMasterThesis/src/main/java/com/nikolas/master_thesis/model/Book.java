@@ -37,7 +37,7 @@ public class Book {
 
 	private boolean isDeleted;
 
-	@ManyToMany(fetch = FetchType.EAGER,cascade = { CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "book_author", joinColumns = { @JoinColumn(name = "book_id") }, inverseJoinColumns = {@JoinColumn(name = "author_id") })
 	private Set<Author> authors;
 

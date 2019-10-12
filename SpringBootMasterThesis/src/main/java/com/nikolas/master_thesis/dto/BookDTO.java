@@ -1,10 +1,14 @@
 package com.nikolas.master_thesis.dto;
 
+import java.util.Set;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class BookDTO {
 
 	private Long bookId;
@@ -16,5 +20,17 @@ public class BookDTO {
 	private int amount;
 
 	private boolean isDeleted;
+
+	private Set<AuthorDTO> authors;
+
+	private Set<CategoryDTO> categories;
+
+	public BookDTO(Long bookId, String name, double price, int amount, boolean isDeleted) {
+		this.bookId = bookId;
+		this.name = name;
+		this.price = price;
+		this.amount = amount;
+		this.isDeleted = isDeleted;
+	}
 
 }

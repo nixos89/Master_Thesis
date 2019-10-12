@@ -1,13 +1,12 @@
 package com.nikolas.master_thesis.service;
 
-import java.util.List;
-
-import com.nikolas.master_thesis.model.Author;
+import com.nikolas.master_thesis.dto.AuthorDTO;
+import com.nikolas.master_thesis.dto.AuthorListDTO;
 
 public interface AuthorService {
 
-	public Author getAuthor(Long id);
+	public AuthorDTO getAuthor(Long id);
 	
-	public List<Author> getAllAuthors();	
+	public AuthorListDTO getAllAuthors();	
 
 }
