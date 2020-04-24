@@ -23,7 +23,7 @@ public class Category {
 
 	private boolean isDeleted;
 
-	@ManyToMany(fetch =FetchType.EAGER ,mappedBy = "categories")
+	@ManyToMany(fetch =FetchType.EAGER, mappedBy = "categories")
 	private Set<Book> books = new HashSet<>();
 
 	public Category(String name) {

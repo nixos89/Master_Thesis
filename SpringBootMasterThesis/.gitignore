@@ -16,6 +16,9 @@ target/
 .settings
 .springBeans
 .sts4-cache
+.dbeaver
+Scripts/
+src/main/java/com/nikolas/master_thesis/testing_performance
 
 ### IntelliJ IDEA ###
 .idea

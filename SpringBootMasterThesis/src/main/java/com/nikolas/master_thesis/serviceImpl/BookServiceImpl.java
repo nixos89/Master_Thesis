@@ -19,7 +19,6 @@ import com.nikolas.master_thesis.service.BookService;
 @Transactional
 public class BookServiceImpl implements BookService {
 
-	// TODO: implement ALL methods in BookServiceImpl
 	@Autowired
 	BookRepository bookRepository;
 
