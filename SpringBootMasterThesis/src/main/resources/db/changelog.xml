@@ -3,38 +3,37 @@
 <databaseChangeLog
 	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
-        	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 	<preConditions>
-		<runningAs username="root" />
+		<runningAs username="postgres" />
 	</preConditions>
 
-	<changeSet id="init" author="NikolaStevanovic">
+	<changeSet id="init" author="Nikola Stevanovic">
 		<sqlFile path="changelogs/init.sql"
 			relativeToChangelogFile="true" />
 	</changeSet>
 
-	<changeSet id="populateDummyData" author="NikolaStevanovic">
-		<sqlFile path="changelogs/populateDummyData.sql"
+	<changeSet id="fillDummyData" author="Nikola Stevanovic">
+		<sqlFile path="changelogs/fillDummyData.sql"
 			relativeToChangelogFile="true" />
 	</changeSet>
-
-	<changeSet id="addMoreCategories" author="NikolaStevanovic">
+	
+	<changeSet id="addMoreCategories" author="Nikola Stevanovic">
 		<sqlFile path="changelogs/addMoreCategories.sql"
 			relativeToChangelogFile="true" />
 	</changeSet>
-
-	<changeSet id="addMoreBooksAndAuthors"
-		author="NikolaStevanovic">
+	
+	<changeSet id="addMoreBooksAndAuthors" author="Nikola Stevanovic">
 		<sqlFile path="changelogs/addMoreBooksAndAuthors.sql"
 			relativeToChangelogFile="true" />
 	</changeSet>
-
-	<changeSet id="insertingOrderItems"
-		author="NikolaStevanovic">
-		<sqlFile path="changelogs/insertingOrderItems.sql"
+	
+	<changeSet id="insertOrdersAndOrderItems" author="Nikola Stevanovic">
+		<sqlFile path="changelogs/insertOrdersAndOrderItems.sql"
 			relativeToChangelogFile="true" />
 	</changeSet>
+	
 
 </databaseChangeLog>

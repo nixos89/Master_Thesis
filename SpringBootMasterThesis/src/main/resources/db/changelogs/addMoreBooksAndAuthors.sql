@@ -1,21 +1,21 @@
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(6, 15, 0, "The Da Vinci Code", 29.98);
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(7, 140, 0, "Inferno", 19.50); 
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(8, 85, 0, "The Lord of the Rings", 23.50); 
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(9, 110, 0, "The Hobbit or There and Back Again", 19.00);
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(10, 43, 0, "Anna Karenina", 17.18); 
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(11, 11, 0, "War and Peace", 16.52); 
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(12, 23, 0, "The Death of Ivan Ilych ", 26.33);
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(13, 54, 0, "Carrie", 19.17); 
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(14, 68, 0, "The Trial", 13.46);
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(15, 80, 0, "IT", 10.74);
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(16, 123, 0, "Boris Godunov", 23.82);
-INSERT INTO book(book_id, amount, is_deleted, name, price) VALUES(17, 140, 0, "Hamlet", 22.61);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(6, 15, false, 'The Da Vinci Code', 29.98);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(7, 140, false, 'Inferno', 19.50); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(8, 85, false, 'The Lord of the Rings', 23.50); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(9, 110, false, 'The Hobbit or There and Back Again', 19.00);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(10, 43, false, 'Anna Karenina', 17.18); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(11, 11, false, 'War and Peace', 16.52); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(12, 23, false, 'The Death of Ivan Ilych', 26.33);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(13, 54, false, 'Carrie', 19.17); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(14, 68, false, 'The Trial', 13.46);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(15, 80, false, 'IT', 10.74);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(16, 123, false, 'Boris Godunov', 23.82);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(17, 140, false, 'Hamlet', 22.61);
 
-INSERT INTO author(author_id, first_name, last_name) VALUES(5, "Leo", "Tolstoy");
-INSERT INTO author(author_id, first_name, last_name) VALUES(6, "Franz", "Kafka");
-INSERT INTO author(author_id, first_name, last_name) VALUES(7, "Alexander", "Pushkin");
-INSERT INTO author(author_id, first_name, last_name) VALUES(8, "William", " Shakespeare");
-INSERT INTO author(author_id, first_name, last_name) VALUES(9, "Dan", "Brown");
+INSERT INTO author(author_id, first_name, last_name) VALUES(5, 'Leo', 'Tolstoy');
+INSERT INTO author(author_id, first_name, last_name) VALUES(6, 'Franz', 'Kafka');
+INSERT INTO author(author_id, first_name, last_name) VALUES(7, 'Alexander', 'Pushkin');
+INSERT INTO author(author_id, first_name, last_name) VALUES(8, 'William', ' Shakespeare');
+INSERT INTO author(author_id, first_name, last_name) VALUES(9, 'Dan', 'Brown');
 
 INSERT INTO book_author(author_id, book_id) VALUES(8, 17);
 INSERT INTO book_author(author_id, book_id) VALUES(7, 16);

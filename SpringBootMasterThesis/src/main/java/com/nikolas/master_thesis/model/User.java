@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 	
 	@Id
@@ -47,8 +47,6 @@ public class User {
 	public User(Long userId, String username) {
 		this.userId = userId;
 		this.username = username;
-	}
-
-	
+	}	
 	
 }

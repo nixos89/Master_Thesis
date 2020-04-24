@@ -13,7 +13,7 @@ public class BookDTO {
 
 	private Long bookId;
 
-	private String name;
+	private String title;
 
 	private double price;
 
@@ -25,9 +25,9 @@ public class BookDTO {
 
 	private Set<CategoryDTO> categories;
 
-	public BookDTO(Long bookId, String name, double price, int amount, boolean isDeleted) {
+	public BookDTO(Long bookId, String title, double price, int amount, boolean isDeleted) {
 		this.bookId = bookId;
-		this.name = name;
+		this.title = title;
 		this.price = price;
 		this.amount = amount;
 		this.isDeleted = isDeleted;

@@ -29,7 +29,7 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long bookId;
 
-	private String name;
+	private String title;
 
 	private double price;
 
@@ -48,9 +48,9 @@ public class Book {
 	@OneToMany(mappedBy = "book", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	private Set<OrderItem> orderItems;
 
-	public Book(Long bookId, String name, double price, int amount, boolean isDeleted) {
+	public Book(Long bookId, String title, double price, int amount, boolean isDeleted) {
 		this.bookId = bookId;
-		this.name = name;
+		this.title = title;
 		this.price = price;
 		this.amount = amount;
 		this.isDeleted = isDeleted;
