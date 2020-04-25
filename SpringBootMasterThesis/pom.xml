@@ -30,9 +30,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
-
-		<!-- FIXME: replace this dependency for MySQL with PostgreSQL dependency 
-			and TEST everything to make sure everything works properly!!! -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -63,6 +60,7 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- COMMENT OUT -->
 		<!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
 		<dependency>
 			<groupId>org.liquibase</groupId>
@@ -82,18 +80,6 @@
 			<version>${org.mapstruct.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
-<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.commons</groupId> -->
-<!-- 			<artifactId>commons-lang3</artifactId> -->
-<!-- 		</dependency> -->
-
- 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.httpcomponents</groupId> -->
-<!-- 			<artifactId>httpclient</artifactId> -->
-<!-- 		</dependency> -->
 
 	</dependencies>
 

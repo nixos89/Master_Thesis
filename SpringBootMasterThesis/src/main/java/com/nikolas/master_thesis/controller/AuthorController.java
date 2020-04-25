@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nikolas.master_thesis.dto.AuthorDTO;
 import com.nikolas.master_thesis.dto.AuthorListDTO;
-import com.nikolas.master_thesis.dto.SaveUpdateAuthorDTO;
 import com.nikolas.master_thesis.service.AuthorService;
 
 @RestController
@@ -39,13 +38,13 @@ public class AuthorController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Boolean> saveAuthor(@RequestBody SaveUpdateAuthorDTO saveUpdateAuthorDTO){
-		return ResponseEntity.ok(authorService.saveAuthor(saveUpdateAuthorDTO));
+	public ResponseEntity<Boolean> saveAuthor(@RequestBody AuthorDTO authorDTO){
+		return ResponseEntity.ok(authorService.saveAuthor(authorDTO));
 	}
 	
 	@PutMapping("/{authorId}")
-	public ResponseEntity<Boolean> updateAuthor(@RequestBody SaveUpdateAuthorDTO saveUpdateAuthorDTO, @PathVariable Long authorId){
-		return ResponseEntity.ok(authorService.updateAuthor(saveUpdateAuthorDTO, authorId));
+	public ResponseEntity<Boolean> updateAuthor(@RequestBody AuthorDTO authorDTO, @PathVariable Long authorId){
+		return ResponseEntity.ok(authorService.updateAuthor(authorDTO, authorId));
 	}
 
 }

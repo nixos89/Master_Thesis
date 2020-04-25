@@ -6,14 +6,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name="author")
+@Table(name = "author")
 public class Author {
 
 	@Id
@@ -24,11 +23,11 @@ public class Author {
 
 	private String lastName;
 
-	@ManyToMany(fetch = FetchType.EAGER,mappedBy = "authors")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "authors")
 	private Set<Book> books;
 
 	public Author(String firstName, String lastName) {
-		this.firstName = firstName;
+		this.firstName = firstName; 
 		this.lastName = lastName;
 	}
 

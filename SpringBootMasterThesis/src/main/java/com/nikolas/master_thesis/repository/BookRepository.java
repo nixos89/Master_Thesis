@@ -12,7 +12,10 @@ import com.nikolas.master_thesis.model.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long>{
 	
-	@Query("SELECT b FROM Book b RIGHT JOIN b.categories c WHERE c.categoryId = :categoryId")
-	public List<Book> findBooksForCategory(@Param("categoryId") Long categoryId);
+	@Query("SELECT b FROM Book b LEFT JOIN b.categories c WHERE c.categoryId = :catId")
+	public List<Book> findBooksForCategory(@Param("catId") Long categoryId);
+	
+	@Query("SELECT b FROM Book b LEFT JOIN b.authors a WHERE a.authorId = :autId")
+	public List<Book> findBooksForAuthor(@Param("autId") Long authorId);
 	
 }

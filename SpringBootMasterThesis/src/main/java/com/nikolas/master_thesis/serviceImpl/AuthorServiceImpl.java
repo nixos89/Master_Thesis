@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.nikolas.master_thesis.dto.AuthorDTO;
 import com.nikolas.master_thesis.dto.AuthorListDTO;
-import com.nikolas.master_thesis.dto.SaveUpdateAuthorDTO;
 import com.nikolas.master_thesis.exception.StoreException;
 import com.nikolas.master_thesis.mapper.AuthorMapper;
 import com.nikolas.master_thesis.model.Author;
@@ -56,32 +55,22 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	public boolean saveAuthor(SaveUpdateAuthorDTO saveUpdateAuthorDTO) {
+	public boolean saveAuthor(AuthorDTO authorDTO) {
 		Author author = new Author();
-		author.setAuthorId(saveUpdateAuthorDTO.getAuthorId());
-		author.setFirstName(saveUpdateAuthorDTO.getFirstName());
-		author.setLastName(saveUpdateAuthorDTO.getLastName());
+		author.setAuthorId(authorDTO.getAuthorId());
+		author.setFirstName(authorDTO.getFirstName());
+		author.setLastName(authorDTO.getLastName());
 
-//		Set<Book> books = new HashSet<Book>();
-//		if (saveUpdateAuthorDTO.getBookIds().isEmpty() || saveUpdateAuthorDTO.getBookIds() == null) {
-//			throw new StoreException("Error, author must contain book ids!", HttpStatus.BAD_REQUEST);
-//		}
-//		
-//		for (Long id : saveUpdateAuthorDTO.getBookIds()) {
-//			books.add(bookRepository.getOne(id));
-//		}
-//		author.setBooks(books);
 		authorRepository.save(author);
-
 		return true;
 	}
 
 	@Override
-	public boolean updateAuthor(SaveUpdateAuthorDTO saveUpdateAuthorDTO, Long authorId) {
+	public boolean updateAuthor(AuthorDTO authorDTO, Long authorId) {
 		Author author = authorRepository.getOne(authorId);
 		if (author != null) {
-			author.setFirstName(saveUpdateAuthorDTO.getFirstName());
-			author.setLastName(saveUpdateAuthorDTO.getLastName());
+			author.setFirstName(authorDTO.getFirstName());
+			author.setLastName(authorDTO.getLastName());
 			authorRepository.save(author);
 			return true;
 		} else {

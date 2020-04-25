@@ -8,7 +8,7 @@ import com.nikolas.master_thesis.model.Book;
 @Mapper(componentModel = "spring", uses = {AuthorMapper.class, CategoryMapper.class})
 public interface BookMapper {
 	
-	Book convertBookDTOToBook(BookDTO bookDTO);
+	Book mapBookDTOToBook(BookDTO bookDTO);
 	
-	BookDTO convertBookToBookDTO(Book book);
+	BookDTO mapBookToBookDTO(Book book);
 }
