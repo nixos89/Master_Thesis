@@ -27,7 +27,6 @@ public class OrderController {
 		return ResponseEntity.ok(orderService.getAllOrders());
 	}
 
-	// FIXME: might need to remove 'username' from addOrder into orderRequest
 	@PostMapping
 	public ResponseEntity<OrderResponseDTO> addOrder(@RequestBody OrderListDTO orderRequest, @RequestParam(name= "username") String username) {
 		return new ResponseEntity<OrderResponseDTO>(orderService.addOrder(orderRequest, username), HttpStatus.OK);
