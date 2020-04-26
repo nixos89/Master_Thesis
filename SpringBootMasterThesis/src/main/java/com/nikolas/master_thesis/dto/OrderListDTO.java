@@ -1,5 +1,7 @@
 package com.nikolas.master_thesis.dto;
 
+import java.util.Set;
+
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -10,13 +12,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class AddCategoryDTO {
+public class OrderListDTO {
 
-
-    private String name;
-    private Boolean isDeleted;
+	private Set<AddOrderDTO> orders;
+	private double totalPrice;
 
 }

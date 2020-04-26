@@ -10,13 +10,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class AddCategoryDTO {
+public class OrderResponseDTO {
 
-
-    private String name;
-    private Boolean isDeleted;
+	private Long orderId;
 
 }

@@ -6,6 +6,6 @@ import com.nikolas.master_thesis.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	
+	User findByUsername(String username);
 	
 }

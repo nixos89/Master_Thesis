@@ -90,12 +90,13 @@ INSERT INTO category_book(category_id, book_id) VALUES(7, 17);
 
 
 -- inserting roles
-INSERT INTO roles VALUES (1,'USER'),(2,'ADMIN');
+INSERT INTO roles(role_id, name) VALUES (1,'USER'),(2,'ADMIN');
 
 -- inserting users
-INSERT INTO users 
-VALUES (1,'test','test','test','test@test.com','{bcrypt}$2a$10$livl.GRKgXNnUxCg6z3bhu0Xj.KeGnINWRhqYFvgaVnFkEBKUMXB.',1),
-(2,'admin','admin','admin','admin@admin.com','{bcrypt}$2a$10$livl.GRKgXNnUxCg6z3bhu0Xj.KeGnINWRhqYFvgaVnFkEBKUMXB.',2);
+INSERT INTO users(user_id, first_name, last_name, email, username, password, role_id) 
+VALUES (1, 'Pera','Peric','perat@gmail.com', 'test', '{bcrypt}$2a$10$livl.GRKgXNnUxCg6z3bhu0Xj.KeGnINWRhqYFvgaVnFkEBKUMXB.', 1),
+(2, 'Djura', 'Djuric', 'admin@gmail.com', 'admin','{bcrypt}$2a$10$livl.GRKgXNnUxCg6z3bhu0Xj.KeGnINWRhqYFvgaVnFkEBKUMXB.', 2),
+(3, 'Milica','Milic','mica@gmail.com', 'mica', '{bcrypt}$2a$10$livl.GRKgXNnUxCg6z3bhu0Xj.KeGnINWRhqYFvgaVnFkEBKUMXB.', 1);
 
 INSERT INTO orders(order_id, total, order_date, user_id) VALUES (1,29.99,'2019-08-22 09:32:12',1),(2,29.99,'2019-08-22 09:45:25',1),(3,29.99,'2019-08-22 09:52:26',1),(4,29.99,'2019-08-22 09:54:33',1),(5,19.98,'2019-08-22 09:54:36',1),(6,29.99,'2019-08-22 09:58:52',1),(7,29.99,'2019-08-22 10:14:11',1),(8,411.87,'2019-08-22 10:26:57',1),(9,504.08000000000004,'2019-08-22 10:27:22',1);
 INSERT INTO order_item(order_item_id, amount, book_id, order_id) VALUES (1,1,1,1),(2,1,1,2),(3,1,1,3),(4,1,1,4),(5,1,2,5),(6,1,1,6),(7,1,1,7),(8,5,7,8),(9,4,9,8),(10,1,8,8),(11,4,2,8),(12,1,5,8),(13,4,1,8),(14,4,10,9),(15,7,1,9),(16,6,8,9),(17,2,14,9),(18,3,13,9);
@@ -107,4 +108,4 @@ alter sequence category_category_id_seq restart with 17;
 alter sequence order_item_order_item_id_seq restart with 19;
 alter sequence orders_order_id_seq restart with 10;
 alter sequence roles_role_id_seq restart with 3;
-alter sequence users_user_id_seq restart with 3;
+alter sequence users_user_id_seq restart with 4;
