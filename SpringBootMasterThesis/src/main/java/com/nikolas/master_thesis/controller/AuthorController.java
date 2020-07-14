@@ -3,6 +3,7 @@ package com.nikolas.master_thesis.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,22 +30,39 @@ public class AuthorController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<AuthorDTO> getAuthor(@PathVariable Long id) {
-		AuthorDTO author = authorService.getAuthor(id);
-		if (author != null) {
-			return new ResponseEntity<AuthorDTO>(author, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+		return ResponseEntity.ok(authorService.getAuthor(id));
 	}
 	
 	@PostMapping
-	public ResponseEntity<Boolean> saveAuthor(@RequestBody AuthorDTO authorDTO){
-		return ResponseEntity.ok(authorService.saveAuthor(authorDTO));
+	public ResponseEntity<?> saveAuthor(@RequestBody AuthorDTO authorDTO) {
+		boolean savedAuthor = authorService.saveAuthor(authorDTO);
+		if (savedAuthor) {
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@PutMapping("/{authorId}")
-	public ResponseEntity<Boolean> updateAuthor(@RequestBody AuthorDTO authorDTO, @PathVariable Long authorId){
-		return ResponseEntity.ok(authorService.updateAuthor(authorDTO, authorId));
+	public ResponseEntity<?> updateAuthor(@RequestBody AuthorDTO authorDTO, @PathVariable Long authorId){
+		boolean isUpdated = authorService.updateAuthor(authorDTO, authorId);
+		if(isUpdated) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteAuthor(@PathVariable Long id) {
+//		boolean isDeleted = authorService.deleteAuthor(id);
+//		
+//		if(isDeleted) {
+//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//		} else {
+//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//		}
+		return ResponseEntity.ok(authorService.deleteAuthor(id));
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.nikolas.master_thesis.serviceImpl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import com.nikolas.master_thesis.dto.AuthorListDTO;
 import com.nikolas.master_thesis.exception.StoreException;
 import com.nikolas.master_thesis.mapper.AuthorMapper;
 import com.nikolas.master_thesis.model.Author;
+import com.nikolas.master_thesis.model.Book;
 import com.nikolas.master_thesis.repository.AuthorRepository;
 import com.nikolas.master_thesis.repository.BookRepository;
 import com.nikolas.master_thesis.service.AuthorService;
@@ -56,6 +58,9 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	public boolean saveAuthor(AuthorDTO authorDTO) {
+		if (authorDTO == null) {
+			throw new StoreException("Request body is empty!", HttpStatus.BAD_REQUEST);
+		}
 		Author author = new Author();
 		author.setAuthorId(authorDTO.getAuthorId());
 		author.setFirstName(authorDTO.getFirstName());
@@ -79,5 +84,25 @@ public class AuthorServiceImpl implements AuthorService {
 		}
 
 	}
+
+	@Override
+	public boolean deleteAuthor(Long authorId) {
+		Author author = authorRepository.getOne(authorId);
+		if (author == null) {
+			throw new StoreException("Author doesn't exist!", HttpStatus.NOT_FOUND);
+		}
+		
+		Set<Book> books = author.getBooks();
+		if (!books.isEmpty()) {
+			throw new StoreException("You need to delete books with this author first.", HttpStatus.BAD_REQUEST);
+		}
+
+		authorRepository.delete(author);
+		return true;
+	}
+	
+	
+	
+	
 
 }
