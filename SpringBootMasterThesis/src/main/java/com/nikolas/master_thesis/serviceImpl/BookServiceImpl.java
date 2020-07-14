@@ -59,7 +59,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public BookListDTO getAllBooks() {
 		BookListDTO bookListDTO = new BookListDTO();
-		List<Book> books = bookRepository.findAll();
+		List<Book> books = bookRepository.getAllBooks();
 		if (books != null && !books.isEmpty()) {
 			for (Book book : books) {
 				bookListDTO.getBookListDTO().add(bookMapper.mapBookToBookDTO(book));

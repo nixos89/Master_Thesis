@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nikolas.master_thesis.dto.AddUpdateBookDTO;
@@ -19,18 +17,17 @@ import com.nikolas.master_thesis.dto.BookListDTO;
 import com.nikolas.master_thesis.service.BookService;
 
 @RestController
-@RequestMapping("api/books")
 public class BookController {
 
 	@Autowired
 	BookService bookService;
 
-	@GetMapping("/{id}")
+	@GetMapping("api/books/{id}")
 	public ResponseEntity<BookDTO> getBook(@PathVariable long id) {
 		return ResponseEntity.ok(bookService.getBook(id));
 	}
 
-	@GetMapping
+	@GetMapping("api/books")
 	public ResponseEntity<BookListDTO> getAllBooks() {
 		BookListDTO bookListDTO = bookService.getAllBooks();
 		if (bookListDTO != null) {
@@ -40,8 +37,8 @@ public class BookController {
 		}
 	}
 
-	@GetMapping(value = "/categories")
-	public ResponseEntity<BookListDTO> getBooksForCategory(@RequestParam(name = "id") Long categoryId) {
+	@GetMapping(value = "api/categories/{id}/books")
+	public ResponseEntity<BookListDTO> getBooksForCategory(@PathVariable(name = "id") Long categoryId) {
 		BookListDTO bookListDTO = bookService.getBooksForCategory(categoryId);
 		if (bookListDTO != null) {
 			return new ResponseEntity<BookListDTO>(bookListDTO, HttpStatus.OK);
@@ -50,8 +47,8 @@ public class BookController {
 		}
 	}
 
-	@GetMapping(value = "/authors")
-	public ResponseEntity<BookListDTO> getBooksForAuthor(@RequestParam(name = "id") Long authorId) {
+	@GetMapping(value = "api/authors/{id}/books")
+	public ResponseEntity<BookListDTO> getBooksForAuthor(@PathVariable(name = "id") Long authorId) {
 		BookListDTO bookListDTO = bookService.getBooksForAuthor(authorId);
 		if (bookListDTO != null) {
 			return new ResponseEntity<BookListDTO>(bookListDTO, HttpStatus.OK);
@@ -60,17 +57,23 @@ public class BookController {
 		}
 	}
 
-	@PostMapping
+	@PostMapping("api/books")
 	public ResponseEntity<?> addBook(@RequestBody AddUpdateBookDTO addUpdateBookDTO) {
 		return ResponseEntity.ok(bookService.addBook(addUpdateBookDTO));
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("api/books/{id}")
 	public ResponseEntity<?> updateBook(@RequestBody AddUpdateBookDTO addUpdateBookDTO, @PathVariable long id) {
-		return ResponseEntity.ok(bookService.updateBook(addUpdateBookDTO, id));
+		boolean isUpdated = bookService.updateBook(addUpdateBookDTO, id);
+		if(isUpdated) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("api/books/{id}")
 	public ResponseEntity<?> deleteBook(@PathVariable long id) {
 		return ResponseEntity.ok(bookService.deleteBook(id));
 	}

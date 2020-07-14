@@ -91,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
 			throw new StoreException("Error, request is empty", HttpStatus.BAD_REQUEST);
 		}
 		return new OrderResponseDTO(order.getOrderId());
-	}
+	}	
 
 	@Override
 	public OrderReportDTO getAllOrders() {
