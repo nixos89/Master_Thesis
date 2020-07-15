@@ -41,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public CategoryListDTO findAllCategories() {
 		CategoryListDTO categoryListDTO = new CategoryListDTO();
-		List<Category> categories = categoryRepository.findAll();
+		List<Category> categories = categoryRepository.findAllByOrderByCategoryIdAsc();
 		if (categories != null && !categories.isEmpty()) {
 			for (Category category : categories) {
 				categoryListDTO.getCategoryList().add(categoryMapper.mapCategoryToCategoryDTO(category));

@@ -98,7 +98,7 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderItemDTO> orderItemDTOList = new LinkedList<OrderItemDTO>();
 		List<OrderDTO> orderDTOList = new LinkedList<OrderDTO>();
 
-		List<Order> orders = orderRepository.findAll();
+		List<Order> orders = orderRepository.findAllByOrderByOrderIdAsc();
 		OrderDTO orderDTO = new OrderDTO();
 		if (orders != null) {
 			double orderPrice;

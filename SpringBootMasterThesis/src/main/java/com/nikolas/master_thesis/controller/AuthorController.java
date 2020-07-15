@@ -55,14 +55,12 @@ public class AuthorController {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteAuthor(@PathVariable Long id) {
-//		boolean isDeleted = authorService.deleteAuthor(id);
-//		
-//		if(isDeleted) {
-//			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//		} else {
-//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//		}
-		return ResponseEntity.ok(authorService.deleteAuthor(id));
+		boolean isDeleted = authorService.deleteAuthor(id);		
+		if(isDeleted) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 
 }

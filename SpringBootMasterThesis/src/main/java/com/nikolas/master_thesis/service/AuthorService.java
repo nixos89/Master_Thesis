@@ -13,5 +13,5 @@ public interface AuthorService {
 
 	public boolean updateAuthor(AuthorDTO saveUpdateAuthorDTO, Long authorId);
 	
-	public boolean deleteAuthor(Long authorId);
+	public Boolean deleteAuthor(Long authorId);
 }

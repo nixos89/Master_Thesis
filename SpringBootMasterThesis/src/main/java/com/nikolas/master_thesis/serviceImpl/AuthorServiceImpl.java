@@ -39,13 +39,12 @@ public class AuthorServiceImpl implements AuthorService {
 		} else {
 			throw new StoreException("Exception, no author returned!", HttpStatus.NOT_FOUND);
 		}
-
 	}
 
 	@Override
 	public AuthorListDTO getAllAuthors() {
 		AuthorListDTO authorListDTO = new AuthorListDTO();
-		List<Author> authors = authorRepository.findAll();
+		List<Author> authors = authorRepository.findAllByOrderByAuthorIdAsc();
 		if (authors == null || authors.isEmpty()) {
 			throw new StoreException("No Authors have been found!", HttpStatus.NOT_FOUND);
 		} else {
@@ -86,12 +85,12 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	public boolean deleteAuthor(Long authorId) {
+	public Boolean deleteAuthor(Long authorId) {
 		Author author = authorRepository.getOne(authorId);
 		if (author == null) {
-			throw new StoreException("Author doesn't exist!", HttpStatus.NOT_FOUND);
+			throw new StoreException("Author with id = " + authorId + "doesn't exist!", HttpStatus.NOT_FOUND);
 		}
-		
+
 		Set<Book> books = author.getBooks();
 		if (!books.isEmpty()) {
 			throw new StoreException("You need to delete books with this author first.", HttpStatus.BAD_REQUEST);
@@ -100,9 +99,5 @@ public class AuthorServiceImpl implements AuthorService {
 		authorRepository.delete(author);
 		return true;
 	}
-	
-	
-	
-	
 
 }
