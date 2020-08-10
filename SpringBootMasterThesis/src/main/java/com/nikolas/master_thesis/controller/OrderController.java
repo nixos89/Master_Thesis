@@ -15,6 +15,8 @@ import com.nikolas.master_thesis.dto.OrderReportDTO;
 import com.nikolas.master_thesis.dto.OrderResponseDTO;
 import com.nikolas.master_thesis.service.OrderService;
 
+import io.micrometer.core.annotation.Timed;
+
 @RestController
 @RequestMapping("api/orders")
 public class OrderController {
@@ -23,11 +25,13 @@ public class OrderController {
 	OrderService orderService;
 
 	@GetMapping
+	@Timed("getAllOrders.requests")
 	public ResponseEntity<OrderReportDTO> getAllOrders() {
 		return ResponseEntity.ok(orderService.getAllOrders());
 	}
 
 	@PostMapping
+	@Timed("createOrder.requests")
 	public ResponseEntity<OrderResponseDTO> addOrder(@RequestBody OrderListDTO orderRequest, @RequestParam(name= "username") String username) {
 		return new ResponseEntity<OrderResponseDTO>(orderService.addOrder(orderRequest, username), HttpStatus.OK);
 	}

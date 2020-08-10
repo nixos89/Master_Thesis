@@ -57,8 +57,9 @@ public class OrderServiceImpl implements OrderService {
 		if (orderRequest != null) {
 			for (AddOrderDTO addOrder : orderRequest.getOrders()) {
 				Book book = bookRepository.getOne(addOrder.getBookId());
-
+				
 				if (book == null) {
+					System.out.println("Book to be ordered is NULL!!!");
 					throw new StoreException("Book doesn't exist", HttpStatus.BAD_REQUEST);
 				} else if (addOrder.getAmount() > book.getAmount()) {
 					throw new StoreException(
@@ -66,6 +67,7 @@ public class OrderServiceImpl implements OrderService {
 									+ "' is more than on the stock!\nCurrent amount on stock is: " + book.getAmount(),
 							HttpStatus.BAD_REQUEST);
 				} else {
+					System.out.println("Book to be ordered:\n" + book.toString());
 					User user = userRepository.findByUsername(username);
 					if (user == null) {
 						throw new StoreException("User not found", HttpStatus.NOT_FOUND);
@@ -90,6 +92,7 @@ public class OrderServiceImpl implements OrderService {
 		} else {
 			throw new StoreException("Error, request is empty", HttpStatus.BAD_REQUEST);
 		}
+		System.out.println("Saved order_id = " + order.getOrderId());
 		return new OrderResponseDTO(order.getOrderId());
 	}	
 

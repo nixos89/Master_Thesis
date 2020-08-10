@@ -71,6 +71,9 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	public boolean updateAuthor(AuthorDTO authorDTO, Long authorId) {
+		if (authorDTO == null) {
+			throw new StoreException("Error, Request Body is empty!", HttpStatus.BAD_REQUEST);
+		}
 		Author author = authorRepository.getOne(authorId);
 		if (author != null) {
 			author.setFirstName(authorDTO.getFirstName());
@@ -79,9 +82,8 @@ public class AuthorServiceImpl implements AuthorService {
 			return true;
 		} else {
 			throw new StoreException("Error, author for id = " + authorId + " has not been found!",
-					HttpStatus.NOT_ACCEPTABLE);
+					HttpStatus.BAD_REQUEST);
 		}
-
 	}
 
 	@Override
@@ -90,7 +92,6 @@ public class AuthorServiceImpl implements AuthorService {
 		if (author == null) {
 			throw new StoreException("Author with id = " + authorId + "doesn't exist!", HttpStatus.NOT_FOUND);
 		}
-
 		Set<Book> books = author.getBooks();
 		if (!books.isEmpty()) {
 			throw new StoreException("You need to delete books with this author first.", HttpStatus.BAD_REQUEST);
