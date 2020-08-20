@@ -11,19 +11,19 @@ INSERT INTO author(author_id, first_name, last_name) VALUES(9, 'Dan', 'Brown');
 
 -- inserting Books
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(1, 33, false, 'Harry Potter and the Philosopher''s Stone', 29.99);
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(2, 151, false, 'Murder on the Orient Express', 19.98); 
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(3, 5, false, 'The murder of Roger Ackroyd', 20.98); 
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(4, 7, false, 'Harry Potter and the Chamber of Secrets', 15.50);
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(5, 85, false, 'Harry Potter and the Prisoner of Azkaban', 14.99);
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(6, 15, false, 'The Da Vinci Code', 29.98);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(2, 500500, false, 'Murder on the Orient Express', 19.98); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(3, 1500, false, 'The murder of Roger Ackroyd', 20.98); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(4, 700, false, 'Harry Potter and the Chamber of Secrets', 15.50);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(5, 500500, false, 'Harry Potter and the Prisoner of Azkaban', 14.99);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(6, 700, false, 'The Da Vinci Code', 29.98);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(7, 140, false, 'Inferno', 19.50); 
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(8, 85, false, 'The Lord of the Rings', 23.50); 
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(9, 110, false, 'The Hobbit or There and Back Again', 19.00);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(10, 43, false, 'Anna Karenina', 17.18); 
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(11, 11, false, 'War and Peace', 16.52); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(11, 300, false, 'War and Peace', 16.52); 
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(12, 23, false, 'The Death of Ivan Ilych', 26.33);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(13, 54, false, 'Carrie', 19.17); 
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(14, 68, false, 'The Trial', 13.46);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(14, 400, false, 'The Trial', 13.46);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(15, 80, false, 'IT', 10.74);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(16, 123, false, 'Boris Godunov', 23.82);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(17, 140, false, 'Hamlet', 22.61);

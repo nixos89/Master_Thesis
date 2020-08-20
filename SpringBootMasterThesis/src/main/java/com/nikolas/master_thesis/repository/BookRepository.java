@@ -21,4 +21,6 @@ public interface BookRepository extends JpaRepository<Book, Long>{
 	@Query("SELECT b FROM Book b ORDER BY b.bookId ASC")
 	public List<Book> getAllBooks();
 	
+	@Query("SELECT b FROM Book b WHERE b.bookId IN :bookIds")
+	public List<Book> getAllBooksFromOrder(@Param("bookIds") List<Long> bookIds);
 }

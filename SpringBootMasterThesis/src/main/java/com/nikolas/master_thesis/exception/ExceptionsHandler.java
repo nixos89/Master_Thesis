@@ -18,17 +18,14 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(StoreException.class)
 	public ResponseEntity<?> handleApiException(StoreException ex, WebRequest request) {
-		LOGGER.error("Error, exception occured: " + ex.getMessage(), ex);
-		LOGGER.error("handleApiException: ex.printStackTrace() =\n");
+		LOGGER.error("Error, exeception " + ex.getClass().getSimpleName() + " occured! Cause: \n");
 		ex.printStackTrace();
-		return new ResponseEntity<>(ex, ex.getHttpStatus()); 
+		return new ResponseEntity<>(ex.getMessage(), ex.getHttpStatus()); 
 	}
 
 	@ExceptionHandler(EntityNotFoundException.class)
 	public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
-		LOGGER.error("Error, exeception "+ ex.getClass().getSimpleName() +" occured! Cause: " + ex.getCause());
-		LOGGER.error(" ==== ex.getMessage() = " + ex.getMessage());
-		LOGGER.error("handleEntityNotFoundException: ex.printStackTrace() =\n");
+		LOGGER.error("Error, exeception " + ex.getClass().getSimpleName() + " occured! Cause: \n");
 		ex.printStackTrace();
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
@@ -36,8 +33,7 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<?> handleAnyException(Exception ex, WebRequest request) {
-		LOGGER.error("Error, exeception "+ ex.getClass().getSimpleName() +" occured! Cause: " + ex.getCause());
-		LOGGER.error("handleAnyException: ex.printStackTrace() =\n");
+		LOGGER.error("Error, exeception " + ex.getClass().getSimpleName() + " occured! Cause:\n");
 		ex.printStackTrace();
 		return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}

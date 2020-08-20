@@ -32,8 +32,9 @@ public class OrderController {
 
 	@PostMapping
 	@Timed("createOrder.requests")
-	public ResponseEntity<OrderResponseDTO> addOrder(@RequestBody OrderListDTO orderRequest, @RequestParam(name= "username") String username) {
-		return new ResponseEntity<OrderResponseDTO>(orderService.addOrder(orderRequest, username), HttpStatus.OK);
+	public ResponseEntity<OrderResponseDTO> addOrder(@RequestBody OrderListDTO orderRequest, @RequestParam(name = "username") String username) {
+		OrderResponseDTO createdOrder = orderService.addOrder(orderRequest, username);
+		return new ResponseEntity<OrderResponseDTO>(createdOrder, HttpStatus.CREATED);
 	}
 
 }

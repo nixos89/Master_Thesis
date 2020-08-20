@@ -1,17 +1,17 @@
 package com.nikolas.master_thesis;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Objects;
-
-import javax.sql.DataSource;
-
-import io.micrometer.core.instrument.Gauge;
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Tag;
-import io.micrometer.core.instrument.Tags;
-import io.micrometer.core.instrument.binder.MeterBinder;
+//import java.sql.Connection;
+//import java.sql.PreparedStatement;
+//import java.sql.SQLException;
+//import java.util.Objects;
+//
+//import javax.sql.DataSource;
+//
+//import io.micrometer.core.instrument.Gauge;
+//import io.micrometer.core.instrument.MeterRegistry;
+//import io.micrometer.core.instrument.Tag;
+//import io.micrometer.core.instrument.Tags;
+//import io.micrometer.core.instrument.binder.MeterBinder;
 
 public class DataSourceStatusProbe /*implements MeterBinder */ {
 

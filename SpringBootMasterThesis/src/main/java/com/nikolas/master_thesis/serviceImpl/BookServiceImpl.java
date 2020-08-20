@@ -132,10 +132,10 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public boolean updateBook(AddUpdateBookDTO addUpdateBookDTO, long id) {
-		Book book = bookRepository.getOne(id);
 		if (addUpdateBookDTO == null) {
 			throw new StoreException("Error Request body for book is empty!", HttpStatus.BAD_REQUEST);
 		}
+		Book book = bookRepository.getOne(id);		
 		if (book != null) {
 			book.setTitle(addUpdateBookDTO.getTitle());
 			book.setPrice(addUpdateBookDTO.getPrice());
@@ -164,7 +164,7 @@ public class BookServiceImpl implements BookService {
 
 			return true;
 		} else {
-			throw new StoreException("Book for requested id = " + id + " doesn't exist!", HttpStatus.NOT_FOUND);
+			throw new StoreException("Book for requested id = " + id + " doesn't exist in database!", HttpStatus.NOT_FOUND);
 		}
 	}
 
