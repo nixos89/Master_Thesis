@@ -12,15 +12,18 @@ import com.nikolas.master_thesis.model.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long>{
 	
-	@Query("SELECT b FROM Book b LEFT JOIN b.categories c WHERE c.categoryId = :catId")
+	@Query("SELECT b FROM Book b JOIN FETCH b.authors a JOIN FETCH b.categories c WHERE b.bookId = :id ORDER BY b.bookId ASC")
+	public Book getSingleBookById(@Param("id") Long bookId);
+	
+	@Query("SELECT b FROM Book b LEFT JOIN FETCH b.categories c WHERE c.categoryId = :catId ORDER BY b.bookId ASC")
 	public List<Book> findBooksForCategory(@Param("catId") Long categoryId);
 	
-	@Query("SELECT b FROM Book b LEFT JOIN b.authors a WHERE a.authorId = :autId")
+	@Query("SELECT b FROM Book b LEFT JOIN FETCH b.authors a WHERE a.authorId = :autId ORDER BY b.bookId ASC")
 	public List<Book> findBooksForAuthor(@Param("autId") Long authorId);
 	
-	@Query("SELECT b FROM Book b ORDER BY b.bookId ASC")
+	@Query("SELECT DISTINCT b FROM Book b JOIN FETCH b.authors a JOIN FETCH b.categories c ORDER BY b.bookId ASC")
 	public List<Book> getAllBooks();
 	
-	@Query("SELECT b FROM Book b WHERE b.bookId IN :bookIds")
+	@Query("SELECT DISTINCT b FROM Book b JOIN FETCH b.authors a JOIN FETCH b.categories c WHERE b.bookId IN :bookIds ORDER BY b.bookId ASC")
 	public List<Book> getAllBooksFromOrder(@Param("bookIds") List<Long> bookIds);
 }

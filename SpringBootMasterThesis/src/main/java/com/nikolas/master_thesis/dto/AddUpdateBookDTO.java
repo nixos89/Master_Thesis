@@ -1,6 +1,6 @@
 package com.nikolas.master_thesis.dto;
 
-import java.util.Set;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -21,8 +22,8 @@ public class AddUpdateBookDTO {
 	@JsonProperty("isDeleted")
 	private boolean deleted;
 	@JsonProperty("categories")
-	private Set<Long> categoryIds;
+	private List<Long> categoryIds;
 	@JsonProperty("authors")
-	private Set<Long> authorIds;
+	private List<Long> authorIds;
 	
 }
