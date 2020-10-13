@@ -10,13 +10,19 @@
 		<runningAs username="postgres" />
 	</preConditions>
 
-	<changeSet id="init" author="Nikola Stevanovic">
-		<sqlFile path="changelogs/init.sql"
+	<changeSet id="initSequence" author="Nikola Stevanovic">
+		<sqlFile path="changelogs/initSequence.sql"
 			relativeToChangelogFile="true" />
 	</changeSet>
 
-	<changeSet id="insertData" author="Nikola Stevanovic">
-		<sqlFile path="changelogs/insertData.sql"
+	<changeSet id="insertDataSequence"
+		author="Nikola Stevanovic">
+		<sqlFile path="changelogs/insertDataSequence.sql"
+			relativeToChangelogFile="true" />
+	</changeSet>
+
+	<changeSet id="insertNewAuthors" author="Nikola Stevanovic">
+		<sqlFile path="changelogs/insertNewAuthors.sql"
 			relativeToChangelogFile="true" />
 	</changeSet>
 

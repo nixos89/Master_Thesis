@@ -11,19 +11,19 @@ INSERT INTO author(author_id, first_name, last_name) VALUES(9, 'Dan', 'Brown');
 
 -- inserting Books
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(1, 33, false, 'Harry Potter and the Philosopher''s Stone', 29.99);
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(2, 151, false, 'Murder on the Orient Express', 19.98); 
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(3, 5, false, 'The murder of Roger Ackroyd', 20.98); 
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(4, 7, false, 'Harry Potter and the Chamber of Secrets', 15.50);
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(5, 85, false, 'Harry Potter and the Prisoner of Azkaban', 14.99);
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(6, 15, false, 'The Da Vinci Code', 29.98);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(2, 500500, false, 'Murder on the Orient Express', 19.98); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(3, 1500, false, 'The murder of Roger Ackroyd', 20.98); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(4, 700, false, 'Harry Potter and the Chamber of Secrets', 15.50);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(5, 500500, false, 'Harry Potter and the Prisoner of Azkaban', 14.99);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(6, 700, false, 'The Da Vinci Code', 29.98);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(7, 140, false, 'Inferno', 19.50); 
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(8, 85, false, 'The Lord of the Rings', 23.50); 
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(9, 110, false, 'The Hobbit or There and Back Again', 19.00);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(10, 43, false, 'Anna Karenina', 17.18); 
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(11, 11, false, 'War and Peace', 16.52); 
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(11, 300, false, 'War and Peace', 16.52); 
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(12, 23, false, 'The Death of Ivan Ilych', 26.33);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(13, 54, false, 'Carrie', 19.17); 
-INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(14, 68, false, 'The Trial', 13.46);
+INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(14, 400, false, 'The Trial', 13.46);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(15, 80, false, 'IT', 10.74);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(16, 123, false, 'Boris Godunov', 23.82);
 INSERT INTO book(book_id, amount, is_deleted, title, price) VALUES(17, 140, false, 'Hamlet', 22.61);
@@ -101,11 +101,11 @@ VALUES (1, 'Pera','Peric','perat@gmail.com', 'test', '{bcrypt}$2a$10$livl.GRKgXN
 INSERT INTO orders(order_id, total, order_date, user_id) VALUES (1,29.99,'2019-08-22 09:32:12',1),(2,29.99,'2019-08-22 09:45:25',1),(3,29.99,'2019-08-22 09:52:26',1),(4,29.99,'2019-08-22 09:54:33',1),(5,19.98,'2019-08-22 09:54:36',1),(6,29.99,'2019-08-22 09:58:52',1),(7,29.99,'2019-08-22 10:14:11',1),(8,411.87,'2019-08-22 10:26:57',1),(9,504.08000000000004,'2019-08-22 10:27:22',1);
 INSERT INTO order_item(order_item_id, amount, book_id, order_id) VALUES (1,1,1,1),(2,1,1,2),(3,1,1,3),(4,1,1,4),(5,1,2,5),(6,1,1,6),(7,1,1,7),(8,5,7,8),(9,4,9,8),(10,1,8,8),(11,4,2,8),(12,1,5,8),(13,4,1,8),(14,4,10,9),(15,7,1,9),(16,6,8,9),(17,2,14,9),(18,3,13,9);
 
--- ALTERING sequences so there is no collision with IDs when performing NEW INSERT statements
-alter sequence author_author_id_seq restart with 10;
-alter sequence book_book_id_seq restart with 18;
-alter sequence category_category_id_seq restart with 17;
-alter sequence order_item_order_item_id_seq restart with 19;
-alter sequence orders_order_id_seq restart with 10;
-alter sequence roles_role_id_seq restart with 3;
-alter sequence users_user_id_seq restart with 4;
+-- ALTERING sequences so there is no collision with IDs when performing NEW INSERT statements - DIFFERENT sequneces
+alter sequence author_seq restart with 10;
+alter sequence book_seq restart with 18;
+alter sequence category_seq restart with 17;
+alter sequence order_item_seq restart with 19;
+alter sequence orders_seq restart with 10;
+alter sequence roles_seq restart with 3;
+alter sequence users_seq restart with 4;

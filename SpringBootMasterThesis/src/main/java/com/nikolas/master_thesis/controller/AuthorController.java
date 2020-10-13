@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.micrometer.core.annotation.Timed;
+
 import com.nikolas.master_thesis.dto.AuthorDTO;
 import com.nikolas.master_thesis.dto.AuthorListDTO;
 import com.nikolas.master_thesis.service.AuthorService;
@@ -24,16 +26,19 @@ public class AuthorController {
 	AuthorService authorService;
 
 	@GetMapping
+	@Timed("getAllAuthors.requests")
 	public ResponseEntity<AuthorListDTO> getAllAuthors() {
 		return ResponseEntity.ok(authorService.getAllAuthors());
 	}
 
 	@GetMapping("/{id}")
+	@Timed("getAuthor.requests")
 	public ResponseEntity<AuthorDTO> getAuthor(@PathVariable Long id) {
 		return ResponseEntity.ok(authorService.getAuthor(id));
 	}
 	
 	@PostMapping
+	@Timed("createAuthor.requests")
 	public ResponseEntity<?> saveAuthor(@RequestBody AuthorDTO authorDTO) {
 		boolean savedAuthor = authorService.saveAuthor(authorDTO);
 		if (savedAuthor) {
@@ -44,6 +49,7 @@ public class AuthorController {
 	}
 	
 	@PutMapping("/{authorId}")
+	@Timed("updateAuthor.requests")
 	public ResponseEntity<?> updateAuthor(@RequestBody AuthorDTO authorDTO, @PathVariable Long authorId){
 		boolean isUpdated = authorService.updateAuthor(authorDTO, authorId);
 		if(isUpdated) {
@@ -54,6 +60,7 @@ public class AuthorController {
 	}
 	
 	@DeleteMapping("/{id}")
+	@Timed("deleteAuthor.requests")
 	public ResponseEntity<?> deleteAuthor(@PathVariable Long id) {
 		boolean isDeleted = authorService.deleteAuthor(id);		
 		if(isDeleted) {

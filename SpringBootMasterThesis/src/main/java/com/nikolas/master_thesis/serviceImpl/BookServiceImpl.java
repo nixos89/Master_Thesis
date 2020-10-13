@@ -1,7 +1,9 @@
 package com.nikolas.master_thesis.serviceImpl;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ import com.nikolas.master_thesis.service.BookService;
 
 @Service
 @Transactional
-public class BookServiceImpl implements BookService {
+public class BookServiceImpl implements BookService {	
 
 	@Autowired
 	AuthorRepository authorRepository;
@@ -48,7 +50,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookDTO getBook(Long id) {
-		Book book = bookRepository.getOne(id);
+		Book book = bookRepository.getSingleBookById(id);
 		if (book != null) {
 			return bookMapper.mapBookToBookDTO(book);
 		} else {
@@ -108,17 +110,23 @@ public class BookServiceImpl implements BookService {
 		book.setPrice(addUpdateBookDTO.getPrice());
 
 		Set<Author> bookAuthors = new HashSet<>();
+		Set<Category> bookCategories = new HashSet<>();
 		Set<Book> books = new HashSet<>();
 		books.add(book);
 
+		Set<Author> authorsToBeSaved = authorRepository.getAuthorsByAuthorIds(addUpdateBookDTO.getAuthorIds());
+		Map<Long, Author> authorIdsMap = new HashMap<>();
+		authorsToBeSaved.forEach(a -> authorIdsMap.put(a.getAuthorId(), a));
 		for (Long authorId : addUpdateBookDTO.getAuthorIds()) {
-			Author author = authorRepository.getOne(authorId);
+			Author author = authorIdsMap.get(authorId);
 			bookAuthors.add(author);
 		}
 
-		Set<Category> bookCategories = new HashSet<>();
+		Set<Category> categoriesToBeSaved = categoryRepository.getCategoriesByCategoryIds(addUpdateBookDTO.getCategoryIds());
+		Map<Long, Category> categoryIdsMap = new HashMap<>();
+		categoriesToBeSaved.forEach(c -> categoryIdsMap.put(c.getCategoryId(), c));
 		for (Long categoryId : addUpdateBookDTO.getCategoryIds()) {
-			Category category = categoryRepository.getOne(categoryId);
+			Category category = categoryIdsMap.get(categoryId);
 			bookCategories.add(category);
 		}
 
@@ -131,37 +139,41 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public boolean updateBook(AddUpdateBookDTO addUpdateBookDTO, long id) {
-		Book book = bookRepository.getOne(id);
-		if (book != null) {
+	public boolean updateBook(AddUpdateBookDTO addUpdateBookDTO, long bookId) {
+		if (addUpdateBookDTO == null) {
+			throw new StoreException("Error Request body for book is empty!", HttpStatus.BAD_REQUEST);
+		}		
+		Book book = bookRepository.getSingleBookById(bookId);		
+		if (book != null) {			
 			book.setTitle(addUpdateBookDTO.getTitle());
 			book.setPrice(addUpdateBookDTO.getPrice());
 			book.setAmount(addUpdateBookDTO.getAmount());
 			book.setDeleted(addUpdateBookDTO.isDeleted());
-
-			Set<Author> bookAuthors = new HashSet<>();
-			Set<Book> books = new HashSet<>();
-			books.add(book);
-
-			for (Long authorId : addUpdateBookDTO.getAuthorIds()) {
-				Author author = authorRepository.getOne(authorId);
-				bookAuthors.add(author);
+			 
+			Set<Author> authorsToBeSaved = authorRepository.getAuthorsByAuthorIds(addUpdateBookDTO.getAuthorIds());
+			Set<Author> authorsToBeDeleted = new HashSet<>();
+			book.getAuthors().addAll(authorsToBeSaved);			
+			for (Author author : book.getAuthors()) {
+				if (!authorsToBeSaved.contains(author)) {
+					authorsToBeDeleted.add(author);
+				}
 			}
-
-			Set<Category> bookCategories = new HashSet<>();
-			for (Long categoryId : addUpdateBookDTO.getCategoryIds()) {
-				Category category = categoryRepository.getOne(categoryId);
-				bookCategories.add(category);
+			book.getAuthors().removeAll(authorsToBeDeleted);
+						
+			Set<Category> categoriesToBeSaved = categoryRepository.getCategoriesByCategoryIds(addUpdateBookDTO.getCategoryIds());
+			Set<Category> categoriesToBeDeleted = new HashSet<>();
+			book.getCategories().addAll(categoriesToBeSaved);
+			for (Category category : book.getCategories()) {
+				if (!categoriesToBeSaved.contains(category)) {
+					categoriesToBeDeleted.add(category);
+				}		
 			}
-
-			book.setAuthors(bookAuthors);
-			book.setCategories(bookCategories);
+			book.getCategories().removeAll(categoriesToBeDeleted);
 
 			bookRepository.save(book);
-
 			return true;
 		} else {
-			throw new StoreException("Book for requested id = " + id + " doesn't exist!", HttpStatus.NOT_FOUND);
+			throw new StoreException("Book for requested id = " + bookId + " doesn't exist in database!", HttpStatus.NOT_FOUND);
 		}
 	}
 

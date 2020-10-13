@@ -5,11 +5,16 @@ import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -38,6 +43,8 @@ import com.nikolas.master_thesis.service.OrderService;
 @Transactional
 public class OrderServiceImpl implements OrderService {
 
+	// private static final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
+	
 	@Autowired
 	BookRepository bookRepository;
 
@@ -50,31 +57,36 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	BookMapper bookMapper;
 
-	@Override
-	public OrderResponseDTO addOrder(OrderListDTO orderRequest, String username) {
-		Set<OrderItem> orderItems = new HashSet<>();
-		Order order = new Order();
-		if (orderRequest != null) {
-			for (AddOrderDTO addOrder : orderRequest.getOrders()) {
-				Book book = bookRepository.getOne(addOrder.getBookId());
 
+	@Override
+	public OrderResponseDTO addOrder(OrderListDTO orderRequest, String username) {				
+		if (orderRequest != null) {
+			User user = userRepository.findByUsername(username);
+			if (user == null) {
+				throw new StoreException("User '" + username + "' does NOT exist in database!", HttpStatus.NOT_FOUND);
+			}
+			Set<OrderItem> orderItems = new HashSet<>();
+			Order order = new Order();
+			List<Long> orderBookIds = orderRequest.getOrders().stream().map(AddOrderDTO::getBookId).collect(Collectors.toList());
+
+			List<Book> booksFromOrder = bookRepository.getAllBooksFromOrder(orderBookIds);
+			Map<Long, Book> booksById = new HashMap<Long, Book>();
+			booksFromOrder.forEach(b -> booksById.put(b.getBookId(), b));
+
+			for (AddOrderDTO addOrder : orderRequest.getOrders()) {
+				Book book = booksById.get(addOrder.getBookId());				
 				if (book == null) {
-					throw new StoreException("Book doesn't exist", HttpStatus.BAD_REQUEST);
+					throw new StoreException("Error, book with id = " + addOrder.getBookId() + "  doesn't exist in database!",
+							HttpStatus.BAD_REQUEST);
 				} else if (addOrder.getAmount() > book.getAmount()) {
 					throw new StoreException(
 							"Amount for book with title: '" + book.getTitle()
 									+ "' is more than on the stock!\nCurrent amount on stock is: " + book.getAmount(),
 							HttpStatus.BAD_REQUEST);
-				} else {
-					User user = userRepository.findByUsername(username);
-					if (user == null) {
-						throw new StoreException("User not found", HttpStatus.NOT_FOUND);
-					}
-
+				} else {										
 					book.setAmount(book.getAmount() - addOrder.getAmount());
 					order.setTotal(orderRequest.getTotalPrice());
-					order.setOrderDate(new Timestamp(System.currentTimeMillis())); // DEBUG this if it WON'T persist to
-																					// DB!
+					order.setOrderDate(new Timestamp(System.currentTimeMillis())); 
 					order.setUser(user);
 
 					OrderItem orderItem = new OrderItem();
@@ -87,12 +99,13 @@ public class OrderServiceImpl implements OrderService {
 					order = orderRepository.save(order);
 				}
 			}
+			return new OrderResponseDTO(order.getOrderId());
 		} else {
-			throw new StoreException("Error, request is empty", HttpStatus.BAD_REQUEST);
-		}
-		return new OrderResponseDTO(order.getOrderId());
+			throw new StoreException("Error, request body is empty!", HttpStatus.BAD_REQUEST);
+		}		
 	}	
 
+	
 	@Override
 	public OrderReportDTO getAllOrders() {
 		List<OrderItemDTO> orderItemDTOList = new LinkedList<OrderItemDTO>();
