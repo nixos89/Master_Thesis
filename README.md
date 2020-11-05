@@ -30,8 +30,8 @@ Create Author [http://localhost:8080/api/authors](http://localhost:8080/api/auth
 
 ```json
 {
-	"first_name": "Franz",
-	"last_name": "Kafka"
+	"firstName": "Franz",
+	"lastName": "Kafka"
 }
 ```
 
@@ -39,7 +39,7 @@ Create Author [http://localhost:8080/api/authors](http://localhost:8080/api/auth
 ```json
 {
 	"name" : "Crime",
-	"is_deleted": false
+	"isDeleted": false
 }
 ```
 
@@ -62,11 +62,11 @@ JSON Body:
 {
     "orders": [
         {
-            "book_id": 1,
+            "bookId": 1,
             "amount": 4
         }
     ],
-    "total_price": 62.00
+    "totalPrice": 62.00
 }
 ```
 
