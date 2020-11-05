@@ -1,5 +1,5 @@
 # Master Thesis project in SpringBoot framework
-RESTful web application built in SpringBoot framework for **testing RESTful methods for their performances and resource consumption** as part of my Master Thesis. This app uses:
+Online bookshop RESTful web application built in SpringBoot framework for **testing RESTful methods for their performances and resource consumption** as part of my Master Thesis. This app uses:
 * **Hibernate ORM** for data mapping
 * **Spring Data JPA** for data querying
 * **Postgres 11 DB**
