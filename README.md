@@ -49,7 +49,7 @@ Create Author [http://localhost:8080/api/authors](http://localhost:8080/api/auth
 	"title": "The Trial",
 	"price": 15.50,
 	"amount": 300,
-	"is_deleted": false,
+	"isDeleted": false,
 	"authors": [1],
 	"categories": [1]
 }	
