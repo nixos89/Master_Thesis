@@ -50,8 +50,8 @@ Create Author [http://localhost:8080/api/authors](http://localhost:8080/api/auth
 	"price": 15.50,
 	"amount": 300,
 	"is_deleted": false,
-	"author_ids": [1],
-	"category_ids": [1]
+	"authors": [1],
+	"categories": [1]
 }	
 ```
 
