@@ -1,12 +1,12 @@
 # Master Thesis project in SpringBoot framework
-RESTful web application built in SpringBoot framework for *testing RESTful methods for their performances and resource consumption* as part of my Master Thesis. This app uses:
-* Hibernate ORM for data mapping
-* Spring Data JPA for data querying
-* Postgres 11 DB
-* ProjectLombok for reducing boiler-plate code
-* MapStruct for quick bi-directional conversion of DTO and Model classes
-* Liquibase for data migration 
-* Micrometer Metrics for exposing needed metrics
+RESTful web application built in SpringBoot framework for **testing RESTful methods for their performances and resource consumption** as part of my Master Thesis. This app uses:
+* **Hibernate ORM** for data mapping
+* **Spring Data JPA** for data querying
+* **Postgres 11 DB**
+* **ProjectLombok** for reducing boiler-plate code
+* **MapStruct** for quick bi-directional conversion of DTO and Model classes
+* **Liquibase** for data migration 
+* **Micrometer Metrics** for exposing needed metrics via **JMX**
 
 
 ## How to launch app
