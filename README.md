@@ -1,5 +1,12 @@
-# Master_Thesis
-RESTful web application built in SpringBoot framework for testing RESTful methods for their performances and resource consumption as part of my Master Thesis.
+# Master Thesis project in SpringBoot framework
+RESTful web application built in SpringBoot framework for *testing RESTful methods for their performances and resource consumption* as part of my Master Thesis. This app uses:
+* Hibernate ORM for data mapping
+* Spring Data JPA for data querying
+* Postgres 11 DB
+* ProjectLombok for reducing boiler-plate code
+* MapStruct for quick bi-directional conversion of DTO and Model classes
+* Liquibase for data migration 
+* Micrometer Metrics for exposing needed metrics
 
 
 ## How to launch app
@@ -21,7 +28,7 @@ Get single Book[http://localhost:8080/api/books/1](http://localhost:8080/api/boo
 ## POST methods
 Create Author [http://localhost:8080/api/authors](http://localhost:8080/api/authors)
 
-```
+```json
 {
 	"first_name": "Franz",
 	"last_name": "Kafka"
@@ -29,7 +36,7 @@ Create Author [http://localhost:8080/api/authors](http://localhost:8080/api/auth
 ```
 
 <br/>Create Category [http://localhost:8080/api/categories](http://localhost:8080/api/categories)
-```
+```json
 {
 	"name" : "Crime",
 	"is_deleted": false
@@ -37,7 +44,7 @@ Create Author [http://localhost:8080/api/authors](http://localhost:8080/api/auth
 ```
 
 <br/>Create Book [http://localhost:8080/api/books](http://localhost:8080/api/books)
-```
+```json
 {
 	"title": "The Trial",
 	"price": 15.50,
@@ -51,7 +58,7 @@ Create Author [http://localhost:8080/api/authors](http://localhost:8080/api/auth
 Create Order [http://localhost:8080/api/orders?username=mica](http://localhost:8080/api/orders?username=mica)
 **NOTE**: In order this method to work `user` table must contain a row with column `username` that has a value 'mica'.<br/>
 JSON Body:
-```
+```json
 {
     "orders": [
         {
