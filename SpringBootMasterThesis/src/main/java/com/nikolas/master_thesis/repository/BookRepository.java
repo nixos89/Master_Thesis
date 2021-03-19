@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.nikolas.master_thesis.model.Book;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book, Long>{
+public interface BookRepository extends JpaRepository<Book, Long> {
 	
 	@Query("SELECT b FROM Book b JOIN FETCH b.authors a JOIN FETCH b.categories c WHERE b.bookId = :id ORDER BY b.bookId ASC")
 	public Book getSingleBookById(@Param("id") Long bookId);
