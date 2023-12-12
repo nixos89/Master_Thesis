@@ -22,14 +22,18 @@ import com.nikolas.master_thesis.service.AuthorService;
 @Transactional
 public class AuthorServiceImpl implements AuthorService {
 
-	@Autowired
 	AuthorRepository authorRepository;
-
-	@Autowired
 	BookRepository bookRepository;
+	AuthorMapper authorMapper;
 
 	@Autowired
-	AuthorMapper authorMapper;
+	public AuthorServiceImpl(AuthorRepository authorRepository, BookRepository bookRepository,
+			AuthorMapper authorMapper) {
+		this.authorRepository = authorRepository;
+		this.bookRepository = bookRepository;
+		this.authorMapper = authorMapper;
+	}
+
 
 	@Override
 	public AuthorDTO getAuthor(Long id) {
