@@ -22,12 +22,16 @@ import com.nikolas.master_thesis.service.CategoryService;
 @Transactional
 public class CategoryServiceImpl implements CategoryService{
 
-	@Autowired
 	CategoryRepository categoryRepository;
+	CategoryMapper categoryMapper;
 
 	@Autowired
-	CategoryMapper categoryMapper;
-	
+	public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+		this.categoryRepository = categoryRepository;
+		this.categoryMapper = categoryMapper;
+	}
+
+
 	@Override
 	public CategoryDTO getCategory(Long id) {
 		Category category = categoryRepository.getOne(id);
