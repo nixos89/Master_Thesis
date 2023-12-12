@@ -6,17 +6,17 @@ import com.nikolas.master_thesis.dto.BookListDTO;
 
 public interface BookService {
 	
-	public BookDTO getBook(Long id);
+	BookDTO getBook(Long id);
 	
-	public BookListDTO getAllBooks();
+	BookListDTO getAllBooks();
 	
-	public BookListDTO getBooksForCategory(Long categoryId);
+	BookListDTO getBooksForCategory(Long categoryId);
 	
-	public BookListDTO getBooksForAuthor(Long authorId);
+	BookListDTO getBooksForAuthor(Long authorId);
 	
-	public boolean addBook(AddUpdateBookDTO addUpdateBookDTO);
+	boolean addBook(AddUpdateBookDTO addUpdateBookDTO);
 	
-	public boolean updateBook(AddUpdateBookDTO addUpdateBookDTO, long id);
+	boolean updateBook(AddUpdateBookDTO addUpdateBookDTO, long id);
 	
-	public boolean deleteBook(long id);
+	boolean deleteBook(long id);
 }
