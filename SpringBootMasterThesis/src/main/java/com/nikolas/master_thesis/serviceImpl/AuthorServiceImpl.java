@@ -22,18 +22,23 @@ import com.nikolas.master_thesis.service.AuthorService;
 @Transactional
 public class AuthorServiceImpl implements AuthorService {
 
-	@Autowired
 	AuthorRepository authorRepository;
-
-	@Autowired
 	BookRepository bookRepository;
+	AuthorMapper authorMapper;
 
 	@Autowired
-	AuthorMapper authorMapper;
+	public AuthorServiceImpl(AuthorRepository authorRepository, BookRepository bookRepository,
+			AuthorMapper authorMapper) {
+		this.authorRepository = authorRepository;
+		this.bookRepository = bookRepository;
+		this.authorMapper = authorMapper;
+	}
+
 
 	@Override
 	public AuthorDTO getAuthor(Long id) {
 		Author author = authorRepository.getOne(id);
+
 		if (author != null) {
 			return authorMapper.mapAuthorToAuthorDTO(author);
 		} else {
@@ -41,10 +46,12 @@ public class AuthorServiceImpl implements AuthorService {
 		}
 	}
 
+
 	@Override
 	public AuthorListDTO getAllAuthors() {
 		AuthorListDTO authorListDTO = new AuthorListDTO();
 		List<Author> authors = authorRepository.findAllByOrderByAuthorIdAsc();
+
 		if (authors == null || authors.isEmpty()) {
 			throw new StoreException("No Authors have been found!", HttpStatus.NOT_FOUND);
 		} else {
@@ -55,11 +62,13 @@ public class AuthorServiceImpl implements AuthorService {
 		}
 	}
 
+
 	@Override
 	public boolean saveAuthor(AuthorDTO authorDTO) {
 		if (authorDTO == null) {
 			throw new StoreException("Request body is empty!", HttpStatus.BAD_REQUEST);
 		}
+
 		Author author = new Author();
 		author.setAuthorId(authorDTO.getAuthorId());
 		author.setFirstName(authorDTO.getFirstName());
@@ -69,11 +78,13 @@ public class AuthorServiceImpl implements AuthorService {
 		return true;
 	}
 
+
 	@Override
 	public boolean updateAuthor(AuthorDTO authorDTO, Long authorId) {
 		if (authorDTO == null) {
 			throw new StoreException("Error, Request Body is empty!", HttpStatus.BAD_REQUEST);
 		}
+
 		Author author = authorRepository.getOne(authorId);
 		if (author != null) {
 			author.setFirstName(authorDTO.getFirstName());
@@ -86,12 +97,14 @@ public class AuthorServiceImpl implements AuthorService {
 		}
 	}
 
+
 	@Override
 	public Boolean deleteAuthor(Long authorId) {
 		Author author = authorRepository.getOne(authorId);
 		if (author == null) {
 			throw new StoreException("Author with id = " + authorId + "doesn't exist!", HttpStatus.NOT_FOUND);
 		}
+
 		Set<Book> books = author.getBooks();
 		if (!books.isEmpty()) {
 			throw new StoreException("You need to delete books with this author first.", HttpStatus.BAD_REQUEST);

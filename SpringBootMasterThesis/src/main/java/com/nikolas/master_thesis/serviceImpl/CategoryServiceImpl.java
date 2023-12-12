@@ -22,15 +22,20 @@ import com.nikolas.master_thesis.service.CategoryService;
 @Transactional
 public class CategoryServiceImpl implements CategoryService{
 
-	@Autowired
 	CategoryRepository categoryRepository;
+	CategoryMapper categoryMapper;
 
 	@Autowired
-	CategoryMapper categoryMapper;
-	
+	public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+		this.categoryRepository = categoryRepository;
+		this.categoryMapper = categoryMapper;
+	}
+
+
 	@Override
 	public CategoryDTO getCategory(Long id) {
 		Category category = categoryRepository.getOne(id);
+
 		if (category != null) {
 			return categoryMapper.mapCategoryToCategoryDTO(category);
 		} else {
@@ -38,10 +43,12 @@ public class CategoryServiceImpl implements CategoryService{
 		}
 	}
 
+
 	@Override
 	public CategoryListDTO findAllCategories() {
 		CategoryListDTO categoryListDTO = new CategoryListDTO();
 		List<Category> categories = categoryRepository.findAllByOrderByCategoryIdAsc();
+
 		if (categories != null && !categories.isEmpty()) {
 			for (Category category : categories) {
 				categoryListDTO.getCategoryList().add(categoryMapper.mapCategoryToCategoryDTO(category));
@@ -52,14 +59,17 @@ public class CategoryServiceImpl implements CategoryService{
 		}
 	}
 
+
 	@Override
 	public CategoryDTO addCategory(AddCategoryDTO addCategoryDTO) {
 		Category category = new Category();
 		category.setName(addCategoryDTO.getName());
 		category.setDeleted(addCategoryDTO.getIsDeleted());
 		category = categoryRepository.save(category);
+
 		return categoryMapper.mapCategoryToCategoryDTO(category);
 	}
+
 
 	@Override
 	public Boolean updateCategory(AddCategoryDTO addCategoryDTO, Long id) {
@@ -72,6 +82,7 @@ public class CategoryServiceImpl implements CategoryService{
 		categoryRepository.save(category);
 		return true;
 	}
+
 
 	@Override
 	public Boolean deleteCategory(Long id) {
@@ -87,8 +98,5 @@ public class CategoryServiceImpl implements CategoryService{
 		category.setDeleted(true);
 		return true;
 	}
-	
-	
-	
 	
 }
