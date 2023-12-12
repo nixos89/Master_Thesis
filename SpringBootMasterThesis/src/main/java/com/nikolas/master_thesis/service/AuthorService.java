@@ -5,13 +5,14 @@ import com.nikolas.master_thesis.dto.AuthorListDTO;
 
 public interface AuthorService {
 
-	public AuthorDTO getAuthor(Long id);
+	AuthorDTO getAuthor(Long id);
 	
-	public AuthorListDTO getAllAuthors();	
+	AuthorListDTO getAllAuthors();
 
-	public boolean saveAuthor(AuthorDTO saveUpdateAuthorDTO);
+	boolean saveAuthor(AuthorDTO saveUpdateAuthorDTO);
 
-	public boolean updateAuthor(AuthorDTO saveUpdateAuthorDTO, Long authorId);
+	boolean updateAuthor(AuthorDTO saveUpdateAuthorDTO, Long authorId);
 	
-	public Boolean deleteAuthor(Long authorId);
+	Boolean deleteAuthor(Long authorId);
+
 }
