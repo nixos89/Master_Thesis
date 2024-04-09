@@ -1,4 +1,4 @@
-package com.nikolas.master_thesis;
+package com.nikolas.master_thesis.config;
 
 //import javax.sql.DataSource;
 //
