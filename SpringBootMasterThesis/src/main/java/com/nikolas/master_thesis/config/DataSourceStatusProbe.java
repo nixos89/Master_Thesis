@@ -1,4 +1,4 @@
-package com.nikolas.master_thesis;
+package com.nikolas.master_thesis.config;
 
 //import java.sql.Connection;
 //import java.sql.PreparedStatement;
